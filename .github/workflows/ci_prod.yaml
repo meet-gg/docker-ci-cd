@@ -25,3 +25,17 @@ jobs:
         file: ./Dockerfile
         push: true
         tags: meet5/node-app:${{ github.sha }}
+
+    - name: Deploy to Vm
+      uses: appleboy/ssh-action@v1
+      with : | 
+        host: ${{ secrets.VM_HOST }}
+        username: ${{ secrets.VM_USER }}
+        key: ${{ secrets.VM_SSH_KEY }}
+        script: |
+          cd /home/ubuntu 
+          cd node-app
+          docker pull meet5/node-app:${{ github.sha }}
+          docker stop node-app 
+          docker rm node-app
+          docker run -d --name node-app -p 3000:3000 meet5/node-app:${{ github.sha }}
