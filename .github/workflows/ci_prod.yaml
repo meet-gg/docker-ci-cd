@@ -2,7 +2,7 @@ name : "node ci prod"
 
 on :
   push:
-  branches: [ main ]
+    branches: [ main ]
 
 jobs:
   build:
