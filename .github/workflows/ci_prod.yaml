@@ -35,6 +35,6 @@ jobs:
           script: |
             cd /home/ubuntu/node-app 
             docker pull meet5/node-app:${{ github.sha }}
-            docker stop node-app 
+            docker stop node-app  
             docker rm node-app
             docker run -d --name node-app -p 3000:3000 meet5/node-app:${{ github.sha }}
