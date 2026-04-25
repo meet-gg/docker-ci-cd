@@ -28,7 +28,7 @@ jobs:
 
       - name: Deploy to Vm
         uses: appleboy/ssh-action@v1
-        with: |
+        with:
           host: ${{ secrets.VM_HOST }}
           username: ${{ secrets.VM_USER }}
           key: ${{ secrets.VM_SSH_KEY }}
